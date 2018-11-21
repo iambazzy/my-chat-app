@@ -15,14 +15,15 @@ app.get('/index',(req,res)=>{
 io.on('connection',(socket)=>{
   console.log('New User Connected');
 
-// sending message from server
-  socket.emit('newMessage',{
-    text: 'Hey this is my first Message'
-  });
 
 // recieving message from the client
   socket.on('createMessage',(data)=>{
     console.log('got a message',data);
+    io.emit('newMessage',{
+      from: data.from,
+      message: data.message,
+      createdAt: new Date().getTime()
+    });
   });
 
 // on dis-connection

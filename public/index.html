@@ -19,11 +19,6 @@
           console.log('got a message',data);
         });
 
-        socket.emit('createMessage',{
-          to: 'xyz',
-          text: 'hey my first message'
-        });
-
         socket.on('disconnect', function () {
           console.log('Server disconnected');
         });
